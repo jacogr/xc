@@ -1,5 +1,5 @@
 (function() {
-  const importComponent = function(base, _href) {
+  const importComponent = function(base, _href, minified) {
     let href = `${base}${_href}`;
     const parts = href.split('/');
 
@@ -8,7 +8,7 @@
     }
 
     if (href.lastIndexOf('.html') !== href.length - 5) {
-      href = `${href}.html`;
+      href = `${href}${minified ? '.min' : ''}.html`;
     }
 
     const onload = function() {
@@ -33,18 +33,19 @@
 
   LoaderPrototype.createdCallback = function() {
     const components = this.getAttribute('components');
+    const minified = this.getAttribute('minified') || false;
+    let base = this.getAttribute('base') || '';
 
     if (!components) {
       return;
     }
 
-    let base = this.getAttribute('base') || '';
     if (base.length && base[base.length - 1] !== '/') {
       base = `${base}/`;
     }
 
     components.split(',').forEach((_href) => {
-      importComponent(base, _href.trim());
+      importComponent(base, _href.trim(), minified);
     });
   };
 
