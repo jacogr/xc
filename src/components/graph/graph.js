@@ -125,7 +125,7 @@
 
   Polymer({
     is: 'xc-graph',
-    bahaviors: [
+    behaviors: [
       window.xc.Graph
     ]
   });
