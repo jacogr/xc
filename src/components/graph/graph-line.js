@@ -1,10 +1,20 @@
 (function() {
-  Polymer({
-    is: 'xc-graph-line',
+  window.xc = window.xc || {};
+
+  window.xc.GraphLine = {
     properties: {
-      data: {
-        type: Object
+      type: {
+        type: String,
+        value: 'line'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-graph-line',
+    behaviors: [
+      window.xc.Graph,
+      window.xc.GraphLine
+    ]
   });
 })();

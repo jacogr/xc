@@ -1,10 +1,20 @@
 (function() {
-  Polymer({
-    is: 'xc-graph-donut',
+  window.xc = window.xc || {};
+
+  window.xc.GraphDonut = {
     properties: {
-      data: {
-        type: Object
+      type: {
+        type: String,
+        value: 'donut'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-graph-donut',
+    behaviors: [
+      window.xc.Graph,
+      window.xc.GraphDonut
+    ]
   });
 })();

@@ -3,10 +3,14 @@ link(rel="import" href="../3rdparty/polymer.html")
 link(rel="import" href="../3rdparty/d3.html")
 link(rel="import" href="../3rdparty/nvd3.html")
 
-dom-module#xc-graph
+dom-module#xc-graph-styles
   template
     style(include="xc-nvd3-styles")
     style !{readCompiled('graph.css')}
+    
+dom-module#xc-graph
+  template
+    style(include="xc-graph-styles")
     
     svg#svg
   
@@ -14,28 +18,32 @@ dom-module#xc-graph
 
 dom-module#xc-graph-bar
   template
-    style :host { display: block; }
-    xc-graph.max(type="bar" data="{{ data }}")
+    style(include="xc-graph-styles")
+    
+    svg#svg
   
   script !{readCompiled('graph-bar.js')}
   
 dom-module#xc-graph-donut
   template
-    style :host { display: block; }
-    xc-graph.max(type="donut" data="{{ data }}")
+    style(include="xc-graph-styles")
+    
+    svg#svg
   
   script !{readCompiled('graph-donut.js')}
   
 dom-module#xc-graph-line
   template
-    style :host { display: block; }
-    xc-graph.max(type="line" data="{{ data }}")
+    style(include="xc-graph-styles")
+    
+    svg#svg
   
   script !{readCompiled('graph-line.js')}
     
 dom-module#xc-graph-pie
   template
-    style :host { display: block; }
-    xc-graph.max(type="pie" data="{{ data }}")
+    style(include="xc-graph-styles")
+    
+    svg#svg
   
   script !{readCompiled('graph-pie.js')}

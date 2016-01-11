@@ -1,10 +1,20 @@
 (function() {
-  Polymer({
-    is: 'xc-graph-pie',
+  window.xc = window.xc || {};
+
+  window.xc.GraphPie = {
     properties: {
-      data: {
-        type: Object
+      type: {
+        type: String,
+        value: 'pie'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-graph-pie',
+    behaviors: [
+      window.xc.Graph,
+      window.xc.GraphPie
+    ]
   });
 })();

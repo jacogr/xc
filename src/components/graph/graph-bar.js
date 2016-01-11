@@ -1,10 +1,20 @@
 (function() {
-  Polymer({
-    is: 'xc-graph-bar',
+  window.xc = window.xc || {};
+
+  window.xc.GraphBar = {
     properties: {
-      data: {
-        type: Object
+      type: {
+        type: String,
+        value: 'bar'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-graph-bar',
+    behaviors: [
+      window.xc.Graph,
+      window.xc.GraphBar
+    ]
   });
 })();

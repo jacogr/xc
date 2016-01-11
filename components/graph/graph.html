@@ -1,6 +1,6 @@
-<link rel="import" href="../3rdparty/lodash.html"/><link rel="import" href="../3rdparty/polymer.html"/><link rel="import" href="../3rdparty/d3.html"/><link rel="import" href="../3rdparty/nvd3.html"/><dom-module id="xc-graph"><template><style include="xc-nvd3-styles"></style><style>:host{display:block}
+<link rel="import" href="../3rdparty/lodash.html"/><link rel="import" href="../3rdparty/polymer.html"/><link rel="import" href="../3rdparty/d3.html"/><link rel="import" href="../3rdparty/nvd3.html"/><dom-module id="xc-graph-styles"><template><style include="xc-nvd3-styles"></style><style>:host{display:block}
 :host(.max){width:100%;height:100%}
-svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></template><script>'use strict';
+svg#svg{display:block;height:100%;width:100%}</style></template></dom-module><dom-module id="xc-graph"><template><style include="xc-graph-styles"></style><svg id="svg"></svg></template><script>'use strict';
 
 (function () {
   window.xc = window.xc || {};
@@ -114,6 +114,7 @@ svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></templ
     },
 
     _renderChart: function _renderChart() {
+      console.log(this.type, this.data);
       this._render(this.$.svg, this.type, this.data);
     },
 
@@ -130,48 +131,76 @@ svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></templ
     is: 'xc-graph',
     behaviors: [window.xc.Graph]
   });
-})();</script></dom-module><dom-module id="xc-graph-bar"><template><style>:host { display: block; }</style><xc-graph type="bar" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+})();</script></dom-module><dom-module id="xc-graph-bar"><template><style include="xc-graph-styles"></style><svg id="svg"></svg></template><script>'use strict';
 
 (function () {
+  window.xc = window.xc || {};
+
+  window.xc.GraphBar = {
+    properties: {
+      type: {
+        type: String,
+        value: 'bar'
+      }
+    }
+  };
+
   Polymer({
     is: 'xc-graph-bar',
-    properties: {
-      data: {
-        type: Object
-      }
-    }
+    behaviors: [window.xc.Graph, window.xc.GraphBar]
   });
-})();</script></dom-module><dom-module id="xc-graph-donut"><template><style>:host { display: block; }</style><xc-graph type="donut" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+})();</script></dom-module><dom-module id="xc-graph-donut"><template><style include="xc-graph-styles"></style><svg id="svg"></svg></template><script>'use strict';
 
 (function () {
+  window.xc = window.xc || {};
+
+  window.xc.GraphDonut = {
+    properties: {
+      type: {
+        type: String,
+        value: 'donut'
+      }
+    }
+  };
+
   Polymer({
     is: 'xc-graph-donut',
-    properties: {
-      data: {
-        type: Object
-      }
-    }
+    behaviors: [window.xc.Graph, window.xc.GraphDonut]
   });
-})();</script></dom-module><dom-module id="xc-graph-line"><template><style>:host { display: block; }</style><xc-graph type="line" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+})();</script></dom-module><dom-module id="xc-graph-line"><template><style include="xc-graph-styles"></style><svg id="svg"></svg></template><script>'use strict';
 
 (function () {
+  window.xc = window.xc || {};
+
+  window.xc.GraphLine = {
+    properties: {
+      type: {
+        type: String,
+        value: 'line'
+      }
+    }
+  };
+
   Polymer({
     is: 'xc-graph-line',
-    properties: {
-      data: {
-        type: Object
-      }
-    }
+    behaviors: [window.xc.Graph, window.xc.GraphLine]
   });
-})();</script></dom-module><dom-module id="xc-graph-pie"><template><style>:host { display: block; }</style><xc-graph type="pie" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+})();</script></dom-module><dom-module id="xc-graph-pie"><template><style include="xc-graph-styles"></style><svg id="svg"></svg></template><script>'use strict';
 
 (function () {
-  Polymer({
-    is: 'xc-graph-pie',
+  window.xc = window.xc || {};
+
+  window.xc.GraphPie = {
     properties: {
-      data: {
-        type: Object
+      type: {
+        type: String,
+        value: 'pie'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-graph-pie',
+    behaviors: [window.xc.Graph, window.xc.GraphPie]
   });
 })();</script></dom-module>
