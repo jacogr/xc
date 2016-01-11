@@ -124,7 +124,7 @@
     }
   };
 
-  const calculate = window.xc.pi = function(digits, padded, cb) {
+  const calculate = window.xc.calculatePi = function(digits, padded, cb) {
     let k = 0;
     const sum = new Decimal(digits + 10);
 
@@ -170,8 +170,7 @@
     loop();
   };
 
-  Polymer({
-    is: 'xc-pi',
+  window.xc.Pi = {
     properties: {
       padded: {
         type: Boolean,
@@ -205,5 +204,12 @@
         this.busy = false;
       });
     }
+  };
+
+  Polymer({
+    is: 'xc-pi',
+    behaviors: [
+      window.xc.Pi
+    ]
   });
 })();

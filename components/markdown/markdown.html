@@ -5,12 +5,13 @@
 ::content h1:first-child,::content h2:first-child{margin-top:1em}</style></template><script>'use strict';
 
 (function () {
+  window.xc = window.xc || {};
+
   var converter = new showdown.Converter({
     noHeaderId: true
   });
 
-  Polymer({
-    is: 'xc-markdown',
+  window.xc.Markdown = {
     properties: {
       markdown: {
         type: String,
@@ -25,5 +26,10 @@
     _render: function _render(markdown) {
       return converter.makeHtml(markdown);
     }
+  };
+
+  Polymer({
+    is: 'xc-markdown',
+    behaviors: [window.xc.Markdown]
   });
 })();</script></dom-module>

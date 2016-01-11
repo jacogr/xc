@@ -90,8 +90,7 @@
     return `${str}${digit(remain)}${frac(remain)}`;
   };
 
-  Polymer({
-    is: 'xc-number-text',
+  window.xc.NumberText = {
     properties: {
       number: {
         type: Number,
@@ -110,5 +109,12 @@
     _setNumberTextStr: function() {
       this.numbertextstr = format(this.number, this.single);
     }
+  };
+
+  Polymer({
+    is: 'xc-number-text',
+    behaviors: [
+      window.xc.NumberText
+    ]
   });
 })();

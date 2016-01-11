@@ -1,4 +1,6 @@
 (function() {
+  window.xc = window.xc || {};
+
   const UNITS = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   const MAXDIV = UNITS.length - 1;
   const BASE = 1024;
@@ -24,8 +26,7 @@
     };
   };
 
-  Polymer({
-    is: 'xc-bytes',
+  window.xc.Bytes = {
     properties: {
       bytes: {
         type: Number,
@@ -45,5 +46,12 @@
       this.bytesstr = fmt.value;
       this.unitstr = fmt.unit;
     }
+  };
+
+  Polymer({
+    is: 'xc-bytes',
+    behaviors: [
+      window.xc.Bytes
+    ]
   });
 })();

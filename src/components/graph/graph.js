@@ -1,4 +1,6 @@
 (function() {
+  window.xc = window.xc || {};
+
   const makeDataset = function(data) {
     return _.map(data.data, (set, sidx) => {
       return {
@@ -96,8 +98,7 @@
     return true;
   };
 
-  Polymer({
-    is: 'xc-graph',
+  window.xc.Graph = {
     properties: {
       data: {
         type: Object,
@@ -120,5 +121,12 @@
 
       return render(svg, type, data);
     }
+  };
+
+  Polymer({
+    is: 'xc-graph',
+    bahaviors: [
+      window.xc.Graph
+    ]
   });
 })();

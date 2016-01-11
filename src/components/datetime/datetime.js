@@ -1,4 +1,6 @@
 (function() {
+  window.xc = window.xc || {};
+
   const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -117,8 +119,7 @@
   const fmtLongDate = '%D %B %Y';
   const fmtLongTime = '%H:%M:%S';
 
-  Polymer({
-    is: 'xc-datetime',
+  window.xc.Datetime = {
     properties: {
       datetime: {
         type: String,
@@ -169,5 +170,12 @@
 
       return format(date, fmt);
     }
+  };
+
+  Polymer({
+    is: 'xc-datetime',
+    behaviors: [
+      window.xc.Datetime
+    ]
   });
 })();

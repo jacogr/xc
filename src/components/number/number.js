@@ -22,8 +22,7 @@
     return parts[1] ? `${whole}.${parts[1]}` : whole;
   };
 
-  Polymer({
-    is: 'xc-number',
+  window.xc.Number = {
     properties: {
       number: {
         type: Number,
@@ -42,5 +41,12 @@
     _setNumberStr: function() {
       this.numberstr = format(this.number, this.format);
     }
+  };
+
+  Polymer({
+    is: 'xc-number',
+    behaviors: [
+      window.xc.Number
+    ]
   });
 })();

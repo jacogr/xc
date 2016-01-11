@@ -3,6 +3,8 @@
 svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></template><script>'use strict';
 
 (function () {
+  window.xc = window.xc || {};
+
   var makeDataset = function makeDataset(data) {
     return _.map(data.data, function (set, sidx) {
       return {
@@ -99,8 +101,7 @@ svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></templ
     return true;
   };
 
-  Polymer({
-    is: 'xc-graph',
+  window.xc.Graph = {
     properties: {
       data: {
         type: Object,
@@ -123,6 +124,11 @@ svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></templ
 
       return render(svg, type, data);
     }
+  };
+
+  Polymer({
+    is: 'xc-graph',
+    bahaviors: [window.xc.Graph]
   });
 })();</script></dom-module><dom-module id="xc-graph-bar"><template><style>:host { display: block; }</style><xc-graph type="bar" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
 
