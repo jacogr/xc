@@ -4,12 +4,12 @@ Converts a number to to spoken/text representation
 
 ### usage
 
-<link rel="import" href="<path>/number-text/number-text.html"/>
-<xc-number-text number="<number>" [single="true|false"]></xc-number-text>
+`<link rel="import" href="<path>/number-text/number-text.html"/>
+<xc-number-text number="<number>" [single="true|false"]></xc-number-text>`
 
 eg.
-  <xc-number-text number="123"></xc-number-text>
-  <xc-number-text number="123" single="true"></xc-number-text>
+  `<xc-number-text number="123"></xc-number-text>`
+  `<xc-number-text number="123" single="true"></xc-number-text>`
 
 Examples:
 
