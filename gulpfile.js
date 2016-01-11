@@ -11,18 +11,62 @@ var eslint = require('gulp-eslint');
 var fs = require('fs');
 var ignore = require('gulp-ignore');
 var jade = require('gulp-jade');
+var rename = require('gulp-rename');
+var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 // var stylemod = require('gulp-style-modules');
 // var vulcanize = require('gulp-vulcanize');
 var uglify = require('gulp-uglify');
-var through = require('through2');
+var through = require('through-gulp');
 
 var compiled = {};
 
-var compiler = function() {
-  return through.obj(function(file, encoding, streamcb) {
-    compiled[file.relative] = file.contents.toString();
-    streamcb();
+var compiler = function(minjs) {
+  return through(
+    function(file, encoding, callback) {
+      if (!minjs || file.relative.indexOf('.spec.js') === -1) {
+        compiled[file.relative + (minjs ? '-min' : '')] = file.contents.toString();
+        this.push(file);
+      }
+
+      callback();
+    },
+    function(callback) {
+      callback();
+    }
+  );
+};
+
+var jadedata = function(minjs) {
+  return data(function(file) {
+    var comp = false;
+    var location = _.filter(file.path.split('/'), function(p) {
+      if (comp && p.indexOf('.jade') === -1) {
+        return true;
+      }
+
+      if (p.indexOf('src') === 0) {
+        comp = true;
+      }
+    }).join('/');
+
+    return {
+      readCompiled: function(_name) {
+        var name = path.join(location, _name);
+        var namemin = name + '-min';
+
+        if (minjs && name.slice(-3) === '.js') {
+          if (compiled[namemin]) {
+            return compiled[namemin];
+          }
+        }
+
+        return compiled[name];
+      },
+      readFile: function(name) {
+        return fs.readFileSync(path.join(location, name), 'utf-8');
+      }
+    };
   });
 };
 
@@ -79,33 +123,28 @@ gulp.task('js', function() {
     .src(['src/**/*.js'])
     .pipe(babel())
     .on('error', errcb)
-    .pipe(compiler());
+    .pipe(compiler())
+    .pipe(uglify())
+    .pipe(compiler(true));
 });
 
-gulp.task('html', ['css', 'js'], function() {
+gulp.task('minhtml', ['css', 'js'], function() {
+  return gulp
+    .src(['src/**/*.jade', '!src/**/*.spec.jade'])
+    .pipe(jadedata(true))
+    .pipe(jade())
+    .on('error', errcb)
+    .pipe(replace(/\"import\" href=\"\.\.\/([A-Za-z0-9_\-]*)\/([A-Za-z0-9_\-]*)\.html\"/g, '"import" href="../$1/$2.min.html"'))
+    .pipe(rename({
+      extname: '.min.html'
+    }))
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task('html', ['minhtml'], function() {
   return gulp
     .src(['src/**/*.jade'])
-    .pipe(data(function(file) {
-      var comp = false;
-      var location = _.filter(file.path.split('/'), function(p) {
-        if (comp && p.indexOf('.jade') === -1) {
-          return true;
-        }
-
-        if (p.indexOf('src') === 0) {
-          comp = true;
-        }
-      }).join('/');
-
-      return {
-        readCompiled: function(name) {
-          return compiled[path.join(location, name)];
-        },
-        readFile: function(name) {
-          return fs.readFileSync(path.join(location, name), 'utf-8');
-        }
-      };
-    }))
+    .pipe(jadedata())
     .pipe(jade())
     .on('error', errcb)
     .pipe(gulp.dest('.'));
