@@ -1,10 +1,20 @@
 (function() {
-  Polymer({
-    is: 'xc-time-remaining',
+  window.xc = window.xc || {};
+
+  window.xc.DatetimeRemaining = {
     properties: {
-      datetime: {
-        type: Object
+      format: {
+        type: String,
+        value: '-remaining'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-time-remaining',
+    behaviors: [
+      window.xc.Datetime,
+      window.xc.DatetimeRemaining
+    ]
   });
 })();

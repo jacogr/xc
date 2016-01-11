@@ -1,6 +1,7 @@
 (function() {
-  Polymer({
-    is: 'xc-time',
+  window.xc = window.xc || {};
+
+  window.xc.DatetimeTime = {
     properties: {
       datetime: {
         type: Object
@@ -29,5 +30,10 @@
 
       this.dtformat = `${format}Time`;
     }
+  };
+
+  Polymer({
+    is: 'xc-time',
+    behaviors: [window.xc.DatetimeTime]
   });
 })();

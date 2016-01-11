@@ -7,6 +7,16 @@ dom-module#xc-datetime
   
   script !{readCompiled('datetime.js')}
 
+dom-module#xc-time-elapsed
+  template {{datestr}}
+  
+  script !{readCompiled('datetime-time-elapsed.js')}
+
+dom-module#xc-time-remaining
+  template {{datestr}}
+  
+  script !{readCompiled('datetime-time-remaining.js')}
+
 dom-module#xc-date
   template
     xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
@@ -18,15 +28,3 @@ dom-module#xc-time
     xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
   
   script !{readCompiled('datetime-time.js')}
-
-dom-module#xc-time-elapsed
-  template
-    xc-datetime(format="-elapsed" datetime="{{ datetime }}")
-  
-  script !{readCompiled('datetime-time-elapsed.js')}
-
-dom-module#xc-time-remaining
-  template
-    xc-datetime(format="-remaining" datetime="{{ datetime }}")
-  
-  script !{readCompiled('datetime-time-remaining.js')}

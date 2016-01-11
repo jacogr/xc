@@ -1,10 +1,20 @@
 (function() {
-  Polymer({
-    is: 'xc-time-elapsed',
+  window.xc = window.xc || {};
+
+  window.xc.DatetimeElapsed = {
     properties: {
-      datetime: {
-        type: Object
+      format: {
+        type: String,
+        value: '-elapsed'
       }
     }
+  };
+
+  Polymer({
+    is: 'xc-time-elapsed',
+    behaviors: [
+      window.xc.Datetime,
+      window.xc.DatetimeElapsed
+    ]
   });
 })();
