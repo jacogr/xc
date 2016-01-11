@@ -10,3 +10,5 @@ Loads a number of components as specified with HTML imports
 eg.
 
     <xc-loader components="components/3rdparty/polymer.html,components/test/test.html"></xc-loader>
+    <xc-loader base="components/" components="3rdparty/polymer.html,test/test.html"></xc-loader>
+    <xc-loader base="components/" components="3rdparty/polymer,test/"></xc-loader>
