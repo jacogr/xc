@@ -34,6 +34,8 @@
 
   Polymer({
     is: 'xc-time',
-    behaviors: [window.xc.DatetimeTime]
+    behaviors: [
+      window.xc.DatetimeTime
+    ]
   });
 })();
