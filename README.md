@@ -23,6 +23,7 @@ In addition the following 3rd party components are available and used internally
 
 - components/3rdparty/d3.html
 - components/3rdparty/lodash.html
+- components/3rdparty/moment.html
 - components/3rdparty/nvd3.html
 - components/3rdparty/polymer.html
 - components/3rdparty/showdown.html
