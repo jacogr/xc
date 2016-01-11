@@ -1,4 +1,4 @@
-## graph
+## xc-graph
 
 Wrapper for rendering graphs using Chart.js
 
