@@ -1,4 +1,4 @@
-## pi
+## xc-pi
 
 Displays PI to an arbitrary number of decimals
 

@@ -1,4 +1,4 @@
-## number-text
+## xc-number-text
 
 Converts a number to to spoken/text representation
 
