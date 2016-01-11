@@ -19,7 +19,7 @@ The following components are available in `components/<name>/<name>.html`
 
 ### 3rdparty
 
-In addition the following 3rd party components are available and used internally
+In addition the following 3rd party components are available and used internally.
 
 - components/3rdparty/d3.html
 - components/3rdparty/lodash.html
