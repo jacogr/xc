@@ -1,7 +1,12 @@
 {
   "name": "xc",
-  "description": "",
-  "main": "index.js",
+  "description": "A collection of web-components",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer"
+  ],
+  "main": "index.html",
   "authors": [
     "jacogr <jacogr@gmail.com>"
   ],
