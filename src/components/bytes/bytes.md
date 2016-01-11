@@ -4,8 +4,9 @@ Formats a value into a bytes representation (2 decimals) with kB, MB, etc. (Up t
 
 ### usage
 
-`<link rel="import" href="<path>/bytes/bytes.html"/>
-<xc-bytes bytes="<bytes>"></xc-bytes>`
+    <link rel="import" href="<path>/bytes/bytes.html"/>
+    <xc-bytes bytes="<bytes>"></xc-bytes>
 
 eg.
-  `<xc-bytes bytes="123456.789"></xc-bytes>`
+
+    <xc-bytes bytes="123456.789"></xc-bytes>

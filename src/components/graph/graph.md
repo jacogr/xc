@@ -4,16 +4,17 @@ Wrapper for rendering graphs using Chart.js
 
 ### usage
 
-`<link rel="import" href="<path>/graph/graph.html"/>
-<xc-graph type="<type>" data="<data>"></xc-graph>`
+    <link rel="import" href="<path>/graph/graph.html"/>
+    <xc-graph type="<type>" data="<data>"></xc-graph>
 
 or
 
-`<xc-graph-<type> data="<data>"></xc-graph-<type>>`
+    <xc-graph-<type> data="<data>"></xc-graph-<type>>
 
 eg.
-  `<xc-graph type="bar" data="..."></xc-graph>`
-  `<xc-graph-line data="..."></xc-graph-line>`
+
+    <xc-graph type="bar" data="..."></xc-graph>
+    <xc-graph-line data="..."></xc-graph-line>
 
 type can be one of the following supported nvd3 types -
   bar
