@@ -8,42 +8,17 @@ dom-module#xc-graph-styles
     style(include="xc-nvd3-styles")
     style !{readCompiled('graph.css')}
     
-dom-module#xc-graph
-  template
-    style(include="xc-graph-styles")
+mixin graph(id, js)
+  dom-module(id=id)
+    template
+      style(include="xc-graph-styles")
+      
+      svg#svg
     
-    svg#svg
+    script !{readCompiled('' + js)}
   
-  script !{readCompiled('graph.js')}
-
-dom-module#xc-graph-bar
-  template
-    style(include="xc-graph-styles")
-    
-    svg#svg
-  
-  script !{readCompiled('graph-bar.js')}
-  
-dom-module#xc-graph-donut
-  template
-    style(include="xc-graph-styles")
-    
-    svg#svg
-  
-  script !{readCompiled('graph-donut.js')}
-  
-dom-module#xc-graph-line
-  template
-    style(include="xc-graph-styles")
-    
-    svg#svg
-  
-  script !{readCompiled('graph-line.js')}
-    
-dom-module#xc-graph-pie
-  template
-    style(include="xc-graph-styles")
-    
-    svg#svg
-  
-  script !{readCompiled('graph-pie.js')}
++graph('xc-graph', 'graph.js')
++graph('xc-graph-bar', 'graph-bar.js')
++graph('xc-graph-donut', 'graph-donut.js')
++graph('xc-graph-line', 'graph-line.js')
++graph('xc-graph-pie', 'graph-pie.js')

@@ -2,29 +2,22 @@ link(rel="import" href="../3rdparty/lodash.html")
 link(rel="import" href="../3rdparty/polymer.html")
 link(rel="import" href="../number-text/number-text.html")
   
-dom-module#xc-datetime
-  template {{datestr}}
-  
-  script !{readCompiled('datetime.js')}
+mixin datetime(id, js)
+  dom-module(id=id)
+    template {{datestr}}
+    
+    script !{readCompiled('' + js)}
+    
++datetime('xc-datetime', 'datetime.js')
++datetime('xc-time-elapsed', 'datetime-time-elapsed.js')
++datetime('xc-time-remaining', 'datetime-time-remaining.js')
 
-dom-module#xc-time-elapsed
-  template {{datestr}}
-  
-  script !{readCompiled('datetime-time-elapsed.js')}
-
-dom-module#xc-time-remaining
-  template {{datestr}}
-  
-  script !{readCompiled('datetime-time-remaining.js')}
-
-dom-module#xc-date
-  template
-    xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
-  
-  script !{readCompiled('datetime-date.js')}
-  
-dom-module#xc-time
-  template
-    xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
-  
-  script !{readCompiled('datetime-time.js')}
+mixin datetimeformat(id, js)
+  dom-module(id=id)
+    template
+      xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
+    
+    script !{readCompiled('' + js)}
+    
++datetimeformat('xc-date', 'datetime-date.js')
++datetimeformat('xc-time', 'datetime-time.js')
