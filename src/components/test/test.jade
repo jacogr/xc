@@ -1,0 +1,12 @@
+link(rel="import" href="../graph/graph.html")
+link(rel="import" href="../pi/pi.html")
+  
+dom-module#xc-test
+  template
+    xc-pi(digits="1000" padded)
+    xc-graph-bar(data="{{ graph.dataset }}" style="height:300px")
+    xc-graph-donut(data="{{ graph.datalist }}" style="height:300px")
+    xc-graph-line(data="{{ graph.dataset }}" style="height:300px")
+    xc-graph-pie(data="{{ graph.datalist }}" style="height:300px")
+  
+  script !{readCompiled('test.js')}

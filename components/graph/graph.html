@@ -1,0 +1,171 @@
+<link rel="import" href="../3rdparty/lodash.html"/><link rel="import" href="../3rdparty/polymer.html"/><link rel="import" href="../3rdparty/d3.html"/><link rel="import" href="../3rdparty/nvd3.html"/><dom-module id="xc-graph"><template><style include="xc-nvd3-styles"></style><style>:host{display:block}
+:host(.max){width:100%;height:100%}
+svg#svg{display:block;height:100%;width:100%}</style><svg id="svg"></svg></template><script>'use strict';
+
+(function () {
+  var makeDataset = function makeDataset(data) {
+    return _.map(data.data, function (set, sidx) {
+      return {
+        key: set.key || data.keys[sidx],
+        area: _.get(set, 'fill', data.fill || false),
+        fillOpacity: 0.25,
+        values: _.map(set.values, function (val, vidx) {
+          return { x: vidx, y: val };
+        })
+      };
+    });
+  };
+
+  var makeDatalist = function makeDatalist(data) {
+    return _.map(data.data, function (set, sidx) {
+      return {
+        key: set.key || data.keys[sidx],
+        y: _.get(set, 'value', set)
+      };
+    });
+  };
+
+  var setupAxis = function setupAxis(data, chart) {
+    var xfmt = !data.xaxis ? d3.format(',r') : function (d, idx) {
+      return data.xaxis[idx];
+    };
+    var yfmt = d3.format(',r');
+
+    chart.yAxis.tickFormat(yfmt);
+    chart.xAxis.tickFormat(xfmt);
+  };
+
+  var createLineChart = function createLineChart(data) {
+    var chart = nv.models.lineChart().options({
+      transitionDuration: 300,
+      useInteractiveGuideline: true
+    });
+
+    setupAxis(data, chart);
+
+    return { chart: chart, data: makeDataset(data) };
+  };
+
+  var createPieChart = function createPieChart(data) {
+    var chart = nv.models.pieChart().x(function (d) {
+      return d.key;
+    }).y(function (d) {
+      return d.y;
+    }).labelType('value');
+
+    return { chart: chart, data: makeDatalist(data) };
+  };
+
+  var createDonutChart = function createDonutChart(data) {
+    var obj = createPieChart(data);
+
+    obj.chart.donut(true);
+
+    return obj;
+  };
+
+  var createMultiBarChart = function createMultiBarChart(data) {
+    var chart = nv.models.multiBarChart().stacked(_.get(data, 'stacked', false));
+
+    setupAxis(data, chart);
+
+    return { chart: chart, data: makeDataset(data) };
+  };
+
+  var render = function render(svg, type, _data) {
+    nv.addGraph(function () {
+      var obj = undefined;
+
+      switch (type) {
+        case 'bar':
+          obj = createMultiBarChart(_data);break;
+        case 'donut':
+          obj = createDonutChart(_data);break;
+        case 'line':
+          obj = createLineChart(_data);break;
+        case 'pie':
+          obj = createPieChart(_data);break;
+        default:
+          break;
+      }
+
+      d3.select(svg).datum(obj.data).transition().duration(1000).call(obj.chart);
+
+      nv.utils.windowResize(obj.chart.update);
+
+      return obj.chart;
+    });
+
+    return true;
+  };
+
+  Polymer({
+    is: 'xc-graph',
+    properties: {
+      data: {
+        type: Object,
+        observer: '_renderChart'
+      },
+      type: {
+        type: String,
+        observer: '_renderChart'
+      }
+    },
+
+    _renderChart: function _renderChart() {
+      this._render(this.$.svg, this.type, this.data);
+    },
+
+    _render: function _render(svg, type, data) {
+      if (!type || !data) {
+        return false;
+      }
+
+      return render(svg, type, data);
+    }
+  });
+})();</script></dom-module><dom-module id="xc-graph-bar"><template><style>:host { display: block; }</style><xc-graph type="bar" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+
+(function () {
+  Polymer({
+    is: 'xc-graph-bar',
+    properties: {
+      data: {
+        type: Object
+      }
+    }
+  });
+})();</script></dom-module><dom-module id="xc-graph-donut"><template><style>:host { display: block; }</style><xc-graph type="donut" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+
+(function () {
+  Polymer({
+    is: 'xc-graph-donut',
+    properties: {
+      data: {
+        type: Object
+      }
+    }
+  });
+})();</script></dom-module><dom-module id="xc-graph-line"><template><style>:host { display: block; }</style><xc-graph type="line" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+
+(function () {
+  Polymer({
+    is: 'xc-graph-line',
+    properties: {
+      data: {
+        type: Object
+      }
+    }
+  });
+})();</script></dom-module><dom-module id="xc-graph-pie"><template><style>:host { display: block; }</style><xc-graph type="pie" data="{{ data }}" class="max"></xc-graph></template><script>'use strict';
+
+(function () {
+  Polymer({
+    is: 'xc-graph-pie',
+    properties: {
+      data: {
+        type: Object
+      }
+    }
+  });
+})();</script></dom-module>

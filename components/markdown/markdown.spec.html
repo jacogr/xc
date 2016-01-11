@@ -1,0 +1,36 @@
+<!DOCTYPE html><html></html><head><meta charset="utf-8"><script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script><script src="../../bower_components/web-component-tester/browser.js"></script><link rel="import" href="markdown.html"></head><body><test-fixture id="fixture"><template><xc-markdown id="element"></xc-markdown></template></test-fixture><script>'use strict';
+
+describe('markdown', function () {
+  var element = undefined;
+  var fixture = undefined;
+
+  beforeEach(function () {
+    fixture = document.getElementById('fixture');
+    fixture.create();
+
+    element = document.getElementById('element');
+  });
+
+  afterEach(function () {
+    fixture.restore();
+  });
+
+  it('attaches the element', function () {
+    expect(element).to.be.ok;
+  });
+
+  describe('rendering', function () {
+    it('renders markdown', function () {
+      element.setAttribute('markdown', '## a heading');
+      expect(element.innerHTML).to.equal('<h2>a heading</h2>');
+    });
+
+    it('acts on markdown changes', function () {
+      element.setAttribute('markdown', '## a heading');
+      expect(element.innerHTML).to.equal('<h2>a heading</h2>');
+
+      element.setAttribute('markdown', '### another heading');
+      expect(element.innerHTML).to.equal('<h3>another heading</h3>');
+    });
+  });
+});</script></body>

@@ -1,0 +1,85 @@
+<!DOCTYPE html><html></html><head><meta charset="utf-8"><script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script><script src="../../bower_components/web-component-tester/browser.js"></script><link rel="import" href="bytes.html"></head><body><test-fixture id="fixture"><template><xc-bytes id="element"></xc-bytes></template></test-fixture><script>'use strict';
+
+describe('number', function () {
+  var element = undefined;
+  var fixture = undefined;
+
+  var testRender = function testRender(number, value, unit) {
+    !_.isUndefined(number) && element.setAttribute('bytes', number);
+
+    expect(element.textContent).to.equal(value + ' ' + unit);
+  };
+
+  beforeEach(function () {
+    fixture = document.getElementById('fixture');
+    fixture.create();
+
+    element = document.getElementById('element');
+  });
+
+  afterEach(function () {
+    fixture.restore();
+  });
+
+  it('attaches the element', function () {
+    expect(element).to.be.ok;
+  });
+
+  describe('formatting', function () {
+    var K = 1024;
+    var M = K * 1024;
+    var G = M * 1024;
+    var T = G * 1024;
+    var P = T * 1024;
+    var E = P * 1024;
+    var Z = E * 1024;
+    var Y = Z * 1024;
+
+    it('renders < 2048 as bytes', function () {
+      testRender(2047, '2,047', 'bytes');
+    });
+
+    it('renders kB', function () {
+      testRender(2156, '2.1', 'kB');
+    });
+
+    it('renders MB', function () {
+      testRender(2256 * K, '2.2', 'MB');
+    });
+
+    it('renders GB', function () {
+      testRender(2256 * M, '2.2', 'GB');
+    });
+
+    it('renders TB', function () {
+      testRender(2256 * G, '2.2', 'TB');
+    });
+
+    it('renders PB', function () {
+      testRender(2256 * T, '2.2', 'PB');
+    });
+
+    it('renders EB', function () {
+      testRender(2256 * P, '2.2', 'EB');
+    });
+
+    it('renders ZB', function () {
+      testRender(2256 * E, '2.2', 'ZB');
+    });
+
+    it('renders YB', function () {
+      testRender(2256 * Z, '2.2', 'YB');
+    });
+
+    it('renders YB (large)', function () {
+      testRender(2256 * Y * K, '2,310,144', 'YB');
+    });
+  });
+
+  describe('listeners', function () {
+    it('acts on byte changes', function () {
+      testRender(2047, '2,047', 'bytes');
+      testRender(2048, '2', 'kB');
+    });
+  });
+});</script></body>

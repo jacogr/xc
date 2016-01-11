@@ -1,0 +1,16 @@
+doctype html
+html
+head
+  meta(charset="utf-8")
+  
+  script(src="../../bower_components/webcomponentsjs/webcomponents-lite.js")
+  script(src="../../bower_components/web-component-tester/browser.js")
+    
+  link(rel="import" href="datetime.html")
+
+body
+  test-fixture#fixture
+    template
+      xc-datetime#element
+    
+  script !{readCompiled('datetime.spec.js')}

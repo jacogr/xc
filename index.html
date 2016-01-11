@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="description" content=""><meta name="author" content=""><meta name="viewport" content="width=device-width"><title>Component Tests</title><link rel="import" href="components/loader/loader.html"></head><body><xc-loader base="components/" components="3rdparty/lodash,3rdparty/polymer,test/"></xc-loader><xc-test></xc-test><script>'use strict';
+
+(function () {
+  window.test = {};
+  window.test.linedata = {
+    axis: ['January', 'February', 'March', 'April', 'May', 'June'],
+    data: [{ key: '1st', values: [65, 59, 80, 81, 32, 57] }, { key: '2nd', values: [28, 48, 40, 19, 53, 43] }, { key: '3rd', values: [38, 44, 50, 23, 64, 48] }, { key: '4th', values: [23, 28, 30, 29, 37, 29] }, { key: '5th', values: [20, 38, 34, 39, 75, 37] }, { key: '6th', values: [18, 58, 25, 49, 48, 76] }]
+  };
+
+  var checkHttps = function checkHttps() {
+    if (window.location.host.substr(-10) === '.github.io' && window.location.protocol !== 'https:') {
+      window.location.protocol = 'https:';
+      return false;
+    }
+
+    return true;
+  };
+
+  var lazyLoadPolymerAndElements = function lazyLoadPolymerAndElements() {
+    // const elements = ['components/test/test.html'];
+    //
+    // elements.forEach(function(elementURL) {
+    //   const elImport = document.createElement('link');
+    //
+    //   elImport.rel = 'import';
+    //   elImport.href = elementURL;
+    //
+    //   document.head.appendChild(elImport);
+    // });
+  };
+
+  var checkWebComponents = function checkWebComponents() {
+    var webComponentsSupported = 'registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template');
+
+    if (!webComponentsSupported) {
+      var wcPoly = document.createElement('script');
+
+      wcPoly.src = '';
+      wcPoly.onload = lazyLoadPolymerAndElements;
+
+      document.head.appendChild(wcPoly);
+    } else {
+      lazyLoadPolymerAndElements();
+    }
+  };
+
+  checkHttps() && checkWebComponents();
+})();</script></body></html>

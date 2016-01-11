@@ -1,0 +1,32 @@
+link(rel="import" href="../3rdparty/lodash.html")
+link(rel="import" href="../3rdparty/polymer.html")
+link(rel="import" href="../number-text/number-text.html")
+  
+dom-module#xc-datetime
+  template {{datestr}}
+  
+  script !{readCompiled('datetime.js')}
+
+dom-module#xc-date
+  template
+    xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
+  
+  script !{readCompiled('datetime-date.js')}
+  
+dom-module#xc-time
+  template
+    xc-datetime(format="{{ dtformat }}" datetime="{{ datetime }}")
+  
+  script !{readCompiled('datetime-time.js')}
+
+dom-module#xc-time-elapsed
+  template
+    xc-datetime(format="-elapsed" datetime="{{ datetime }}")
+  
+  script !{readCompiled('datetime-time-elapsed.js')}
+
+dom-module#xc-time-remaining
+  template
+    xc-datetime(format="-remaining" datetime="{{ datetime }}")
+  
+  script !{readCompiled('datetime-time-remaining.js')}

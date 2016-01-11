@@ -1,0 +1,29 @@
+<link rel="import" href="../3rdparty/polymer.html"/><link rel="import" href="../3rdparty/showdown.html"/><dom-module id="xc-markdown"><template><style>:host{padding:0;display:block}
+::content li{margin:.5em 0}
+::content p{margin:1em 0}
+::content h1,::content h2{font-size:1em;margin:2em 0 .5em}
+::content h1:first-child,::content h2:first-child{margin-top:1em}</style></template><script>'use strict';
+
+(function () {
+  var converter = new showdown.Converter({
+    noHeaderId: true
+  });
+
+  Polymer({
+    is: 'xc-markdown',
+    properties: {
+      markdown: {
+        type: String,
+        observer: '_markdownChanged'
+      }
+    },
+
+    _markdownChanged: function _markdownChanged() {
+      this.innerHTML = this._render(this.markdown);
+    },
+
+    _render: function _render(markdown) {
+      return converter.makeHtml(markdown);
+    }
+  });
+})();</script></dom-module>

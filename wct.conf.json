@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "persistent": true,
+  "plugins": {
+    "local": {
+      "browsers": ["chrome"]
+    }
+  },
+  "suites": [
+    "components/**/*.spec.html"
+  ]
+}

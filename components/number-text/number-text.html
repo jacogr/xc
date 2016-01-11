@@ -1,0 +1,113 @@
+<link rel="import" href="../3rdparty/lodash.html"/><link rel="import" href="../3rdparty/polymer.html"/><dom-module id="xc-number-text"><template>{{numbertextstr}}</template><script>'use strict';
+
+(function () {
+  window.xc = window.xc || {};
+
+  var DIGITS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  var TENS = ['zero', 'ten', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+  var digit = function digit(num) {
+    return DIGITS[Math.floor(num)];
+  };
+
+  var frac = function frac(num) {
+    if (!(num % 1)) {
+      return '';
+    }
+
+    var fixed = '' + num.toFixed(2) * 1;
+    return ' point ' + window.xc.formatNumberText(fixed.split('.')[1], true);
+  };
+
+  var format = window.xc.formatNumberText = function (_number, single) {
+    var number = undefined;
+
+    if (_.isString(_number)) {
+      number = _.parseInt(_number);
+    } else if (_.isNumber(_number)) {
+      number = _number;
+    } else {
+      return '';
+    }
+
+    var str = '';
+
+    if (single || number > 99999) {
+      while (number > 0) {
+        var mod = number % 10;
+
+        str = '' + digit(mod) + (str.length ? ' ' : '') + str;
+        number = (number - mod) / 10;
+      }
+
+      return '' + (str.length ? str : digit(0)) + frac(number);
+    }
+
+    var thousand = Math.floor(number / 1000);
+    number = number % 1000;
+
+    if (thousand) {
+      str = format(thousand) + '-thousand';
+
+      if (number <= 0) {
+        return '' + str + frac(number);
+      }
+
+      str = str + ' ';
+    }
+
+    var hundred = Math.floor(number / 100);
+    number = number % 100;
+
+    if (hundred) {
+      str = '' + str + digit(hundred) + '-hundred';
+
+      if (number <= 0) {
+        return '' + str + frac(number);
+      }
+
+      str = str + ' and ';
+    }
+
+    if (number < 20) {
+      return '' + str + digit(number) + frac(number);
+    }
+
+    var remain = number % 10;
+    var ten = (number - remain) / 10;
+
+    if (ten) {
+      str = '' + str + TENS[ten];
+
+      if (remain <= 0) {
+        return '' + str + frac(remain);
+      }
+
+      str = str + '-';
+    }
+
+    return '' + str + digit(remain) + frac(remain);
+  };
+
+  Polymer({
+    is: 'xc-number-text',
+    properties: {
+      number: {
+        type: Number,
+        observer: '_setNumberTextStr'
+      },
+      single: {
+        type: Boolean,
+        value: false,
+        observer: '_setNumberTextStr'
+      },
+      numbertextstr: {
+        type: String
+      }
+    },
+
+    _setNumberTextStr: function _setNumberTextStr() {
+      this.numbertextstr = format(this.number, this.single);
+    }
+  });
+})();</script></dom-module>
