@@ -12,11 +12,15 @@ html(lang="en")
     link(rel="import" href="components/loader/loader.html")
     
   body
-    xc-loader(base="components/" components="graph/,pi/")
+    xc-loader(base="components/" components="bytes/,graph/,pi/")
     
     dom-module#xc-index
       template
         style !{readCompiled('index.css')}
+        
+        .sample
+          pre xc-bytes bytes="456789"
+          xc-bytes(bytes="456789")
         
         .sample
           pre xc-pi digits="1000" padded
@@ -41,3 +45,5 @@ html(lang="en")
     xc-index
     
     script !{readCompiled('index.js')}
+  
+    

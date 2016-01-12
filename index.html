@@ -1,7 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="description" content=""><meta name="author" content=""><meta name="viewport" content="width=device-width"><title>xc-* components</title><link rel="import" href="components/loader/loader.html"></head><body><xc-loader base="components/" components="graph/,pi/"></xc-loader><dom-module id="xc-index"><template><style>pre{padding:1em;background:#f5f5f5}
-.sample{margin-bottom:2em}</style><div class="sample"><pre>xc-pi digits="1000" padded</pre><xc-pi digits="1000" padded></xc-pi></div><div class="sample"><pre>xc-graph-bar data="..."</pre><xc-graph-bar data="{{ graph.dataset }}" style="height:300px"></xc-graph-bar></div><div class="sample"><pre>xc-graph-donut data="..."</pre><xc-graph-donut data="{{ graph.datalist }}" style="height:300px"></xc-graph-donut></div><div class="sample"><pre>xc-graph-line data="..."</pre><xc-graph-line data="{{ graph.dataset }}" style="height:300px"></xc-graph-line></div><div class="sample"><pre>xc-graph-pie data="..."</pre><xc-graph-pie data="{{ graph.datalist }}" style="height:300px"></xc-graph-pie></div></template></dom-module><xc-index></xc-index><script>'use strict';
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="description" content=""><meta name="author" content=""><meta name="viewport" content="width=device-width"><title>xc-* components</title><link rel="import" href="components/loader/loader.html"></head><body><xc-loader base="components/" components="bytes/,graph/,pi/"></xc-loader><dom-module id="xc-index"><template><style>pre{padding:1em;background:#f5f5f5}
+.sample{margin-bottom:2em}</style><div class="sample"><pre>xc-bytes bytes="456789"</pre><xc-bytes bytes="456789"></xc-bytes></div><div class="sample"><pre>xc-pi digits="1000" padded</pre><xc-pi digits="1000" padded></xc-pi></div><div class="sample"><pre>xc-graph-bar data="..."</pre><xc-graph-bar data="{{ graph.dataset }}" style="height:300px"></xc-graph-bar></div><div class="sample"><pre>xc-graph-donut data="..."</pre><xc-graph-donut data="{{ graph.datalist }}" style="height:300px"></xc-graph-donut></div><div class="sample"><pre>xc-graph-line data="..."</pre><xc-graph-line data="{{ graph.dataset }}" style="height:300px"></xc-graph-line></div><div class="sample"><pre>xc-graph-pie data="..."</pre><xc-graph-pie data="{{ graph.datalist }}" style="height:300px"></xc-graph-pie></div></template></dom-module><xc-index></xc-index><script>'use strict';
 
 (function () {
+  var dataset = {
+    xaxis: ['January', 'February', 'March', 'April', 'May', 'June'],
+    fill: false,
+    data: [{ key: '1st', values: [65, 59, 80, 81, 32, 57] }, { key: '2nd', values: [28, 48, 40, 19, 53, 43] }, { key: '3rd', values: [38, 44, 50, 23, 64, 48] }, { key: '4th', values: [23, 28, 30, 29, 37, 29] }, { key: '5th', values: [20, 38, 34, 39, 75, 37], fill: true }, { key: '6th', values: [18, 58, 25, 49, 48, 76] }]
+  };
+
+  var datalist = {
+    data: [{ key: '1st', value: 300 }, { key: '2nd', value: 50 }, { key: '3rd', value: 100 }, { key: '4th', value: 75 }, { key: '5th', value: 125 }, { key: '6th', value: 187 }]
+  };
+
   var checkHttps = function checkHttps() {
     if (window.location.host.substr(-10) === '.github.io' && window.location.protocol !== 'https:') {
       window.location.href = window.location.href.replace('http', 'https');
@@ -19,14 +29,8 @@
         graph: {
           type: Object,
           value: {
-            dataset: {
-              xaxis: ['January', 'February', 'March', 'April', 'May', 'June'],
-              fill: false,
-              data: [{ key: '1st', values: [65, 59, 80, 81, 32, 57] }, { key: '2nd', values: [28, 48, 40, 19, 53, 43] }, { key: '3rd', values: [38, 44, 50, 23, 64, 48] }, { key: '4th', values: [23, 28, 30, 29, 37, 29] }, { key: '5th', values: [20, 38, 34, 39, 75, 37], fill: true }, { key: '6th', values: [18, 58, 25, 49, 48, 76] }]
-            },
-            datalist: {
-              data: [{ key: '1st', value: 300 }, { key: '2nd', value: 50 }, { key: '3rd', value: 100 }, { key: '4th', value: 75 }, { key: '5th', value: 125 }, { key: '6th', value: 187 }]
-            }
+            dataset: dataset,
+            datalist: datalist
           }
         }
       }
