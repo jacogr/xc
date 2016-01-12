@@ -24,40 +24,39 @@ Convenience functions with limited formatting is also available
 
 formatstr can contain multiples of the following
 
-  -elapsed - Outputs an elapsed timestring
-  -remaining - Time remaining to a certain point
-  -longDate - 07 January 2016
-  -longTime - 09:41:07
-  -long - 07 January 2016 09:41:07
-  -mediumDate - 7 Jan 2016
-  -mediumTime - 09:41
-  -medium (default) - 7 Jan 2016 09:41
-  -textDate - seven January twenty sixteen
-  -textTime - six fifteen pm
-  -text - seven January twenty sixteen six fifteen pm
-
-  %<character> -
-    %% - %
-    %a - day of week (3 characters)
-    %A - day of week (full)
-    %b - month (3 characters)
-    %B - month (full)
-    %c - century
-    %d - date
-    %D - date (zero padded)
-    %h - hour
-    %H - hour (zero padded)
-    %l - 12 hour hours
-    %I - 12 hours hours (zero padded)
-    %m - month (zero padded)
-    %M - minute (zero padded)
-    %p - am/pm
-    %P - AM/PM
-    %s - seconds
-    %S - seconds (zero padded)
-    %t - time.toString()
-    %w - weekday
-    %y - year (2 digits)
-    %Y - year (4 digits)
-    %z - timezone
-    %Z - timezone
+- -elapsed - Outputs an elapsed timestring
+- -remaining - Time remaining to a certain point
+- -longDate - 07 January 2016
+- -longTime - 09:41:07
+- -long - 07 January 2016 09:41:07
+- -mediumDate - 7 Jan 2016
+- -mediumTime - 09:41
+- -medium (default) - 7 Jan 2016 09:41
+- -textDate - seven January twenty sixteen
+- -textTime - six fifteen pm
+- -text - seven January twenty sixteen six fifteen pm
+- %<character> -
+  - %% - %
+  - %a - day of week (3 characters)
+  - %A - day of week (full)
+  - %b - month (3 characters)
+  - %B - month (full)
+  - %c - century
+  - %d - date
+  - %D - date (zero padded)
+  - %h - hour
+  - %H - hour (zero padded)
+  - %l - 12 hour hours
+  - %I - 12 hours hours (zero padded)
+  - %m - month (zero padded)
+  - %M - minute (zero padded)
+  - %p - am/pm
+  - %P - AM/PM
+  - %s - seconds
+  - %S - seconds (zero padded)
+  - %t - time.toString()
+  - %w - weekday
+  - %y - year (2 digits)
+  - %Y - year (4 digits)
+  - %z - timezone
+  - %Z - timezone

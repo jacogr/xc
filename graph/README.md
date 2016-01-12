@@ -17,16 +17,16 @@ eg.
     <xc-graph-line data="..."></xc-graph-line>
 
 type can be one of the following supported nvd3 types -
-  bar
-  doughnut
-  line
-  pie
-  polar
-  radar
+- bar
+- doughnut
+- line
+- pie
+- polar
+- radar
 
 data contains the actual data of the graph to render. For the sake of consistency, the data object has been modified slightly from the original Chart.js implementation, containing the following fields:
 
-`{
-  axis: [<array of labels, as it applies to bar, line & radar>],
-  data: [<replacement for datasets and straight data contents>]
-}`
+    {
+      axis: [<array of labels, as it applies to bar, line & radar>],
+      data: [<replacement for datasets and straight data contents>]
+    }
