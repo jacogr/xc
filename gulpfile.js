@@ -130,7 +130,7 @@ gulp.task('js', function() {
 
 gulp.task('minhtml', ['css', 'js'], function() {
   return gulp
-    .src(['src/**/*.jade', '!src/**/*.spec.jade'])
+    .src(['src/**/*.jade', '!src/**/*.spec.jade', '!src/index.jade'])
     .pipe(jadedata(true))
     .pipe(jade())
     .on('error', errcb)
