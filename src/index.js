@@ -1,7 +1,8 @@
 (function() {
   const checkHttps = function() {
     if (window.location.host.substr(-10) === '.github.io' && window.location.protocol !== 'https:') {
-      window.location.protocol = 'https:';
+      window.location.href = window.location.href.replace('http', 'https');
+      // window.location.protocol = 'https:';
       return false;
     }
 
