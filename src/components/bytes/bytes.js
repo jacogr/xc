@@ -45,7 +45,9 @@
 
       this.bytesstr = fmt.value;
       this.unitstr = fmt.unit;
-    }
+    },
+
+    format: format
   };
 
   Polymer({
