@@ -8,13 +8,13 @@ A collection of web components built on Polymer
 The following components are available in `components/<name>/<name>.html`
 
 - [components/bytes](components/bytes/)
-- [components/datetime](components/datetime/datetime.md)
-- [components/graph](components/graph/graph.md)
-- [components/loader](components/loader/loader.md)
-- [components/markdown](components/markdown/markdown.md)
-- [components/number](components/number/number.md)
-- [components/number-text](components/number-text/number-text.md)
-- [components/pi](components/pi/pi.md)
+- [components/datetime](components/datetime/)
+- [components/graph](components/graph/)
+- [components/loader](components/loader/)
+- [components/markdown](components/markdown/)
+- [components/number](components/number/)
+- [components/number-text](components/number-text/)
+- [components/pi](components/pi/)
 
 
 ### 3rdparty
