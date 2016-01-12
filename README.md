@@ -7,7 +7,7 @@ A collection of web components built on Polymer
 
 The following components are available in `components/<name>/<name>.html`
 
-- [components/bytes](components/bytes/bytes.md)
+- [components/bytes](components/bytes/)
 - [components/datetime](components/datetime/datetime.md)
 - [components/graph](components/graph/graph.md)
 - [components/loader](components/loader/loader.md)
