@@ -9,7 +9,7 @@
 
   const format = function(_number) {
     if (!_.isNumber(_number)) {
-      return '';
+      return {};
     }
 
     let number = _number;
