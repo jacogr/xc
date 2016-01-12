@@ -1,5 +1,5 @@
 (function() {
-  const importComponent = function(base, _href, minified) {
+  const importComponent = function(base, _href, minified, cb) {
     let href = `${base}${_href}`;
     const parts = href.split('/');
 
@@ -13,10 +13,12 @@
 
     const onload = function() {
       console.log(`OK: Loaded ${_href} as ${href}`);
+      cb(_href, true);
     };
 
     const onerror = function() {
       console.error(`ERROR: Loading ${_href} as ${href}`);
+      cb(_href, false);
     };
 
     const element = document.createElement('link');
@@ -32,20 +34,28 @@
   const LoaderPrototype = Object.create(window.HTMLElement.prototype);
 
   LoaderPrototype.createdCallback = function() {
-    const components = this.getAttribute('components');
+    const loaded = {};
+    const components = this.getAttribute('components').split(',');
     const minified = this.getAttribute('minified') || false;
+    const bootstrap = this.getAttribute('bootstrap');
     let base = this.getAttribute('base') || '';
 
-    if (!components) {
-      return;
-    }
+    const loadcb = function(name, ok) {
+      loaded[name] = ok;
+
+      if (bootstrap && Object.keys(loaded).length === components.length) {
+        window[bootstrap]();
+      }
+    };
 
     if (base.length && base[base.length - 1] !== '/') {
       base = `${base}/`;
     }
 
-    components.split(',').forEach((_href) => {
-      importComponent(base, _href.trim(), minified);
+    components.forEach((_href) => {
+      const href = _href.trim();
+
+      importComponent(base, href, minified, loadcb);
     });
   };
 

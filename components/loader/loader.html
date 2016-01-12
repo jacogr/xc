@@ -1,7 +1,7 @@
 <link rel="import" href="../3rdparty/polymer.html"/><dom-module id="xc-loader"><script>'use strict';
 
 (function () {
-  var importComponent = function importComponent(base, _href, minified) {
+  var importComponent = function importComponent(base, _href, minified, cb) {
     var href = '' + base + _href;
     var parts = href.split('/');
 
@@ -15,10 +15,12 @@
 
     var onload = function onload() {
       console.log('OK: Loaded ' + _href + ' as ' + href);
+      cb(_href, true);
     };
 
     var onerror = function onerror() {
       console.error('ERROR: Loading ' + _href + ' as ' + href);
+      cb(_href, false);
     };
 
     var element = document.createElement('link');
@@ -34,20 +36,28 @@
   var LoaderPrototype = Object.create(window.HTMLElement.prototype);
 
   LoaderPrototype.createdCallback = function () {
-    var components = this.getAttribute('components');
+    var loaded = {};
+    var components = this.getAttribute('components').split(',');
     var minified = this.getAttribute('minified') || false;
+    var bootstrap = this.getAttribute('bootstrap');
     var base = this.getAttribute('base') || '';
 
-    if (!components) {
-      return;
-    }
+    var loadcb = function loadcb(name, ok) {
+      loaded[name] = ok;
+
+      if (bootstrap && Object.keys(loaded).length === components.length) {
+        window[bootstrap]();
+      }
+    };
 
     if (base.length && base[base.length - 1] !== '/') {
       base = base + '/';
     }
 
-    components.split(',').forEach(function (_href) {
-      importComponent(base, _href.trim(), minified);
+    components.forEach(function (_href) {
+      var href = _href.trim();
+
+      importComponent(base, href, minified, loadcb);
     });
   };
 

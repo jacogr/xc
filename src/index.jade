@@ -12,7 +12,18 @@ html(lang="en")
     link(rel="import" href="components/loader/loader.html")
     
   body
-    xc-loader(base="components/" components="3rdparty/lodash,3rdparty/polymer,test/")
-    xc-test
+    xc-loader(base="components/" components="graph/,pi/")
+    
+    dom-module#xc-index
+      template
+        xc-pi(digits="1000" padded)
+        xc-graph-bar(data="{{ graph.dataset }}" style="height:300px")
+        xc-graph-donut(data="{{ graph.datalist }}" style="height:300px")
+        xc-graph-line(data="{{ graph.dataset }}" style="height:300px")
+        xc-graph-pie(data="{{ graph.datalist }}" style="height:300px")
       
-    script !{readCompiled('client.js')}
+      script !{readCompiled('test.js')}
+      
+    xc-index
+      
+    script !{readCompiled('index.js')}
