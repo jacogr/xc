@@ -161,8 +161,6 @@
         loop();
       } else {
         const pi = convergedDecimals(sum, old, 10, padded).trim();
-        console.log('pi =', pi);
-
         cb(pi);
       }
     };

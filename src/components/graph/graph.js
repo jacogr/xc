@@ -111,7 +111,6 @@
     },
 
     _renderChart: function() {
-      console.log(this.type, this.data);
       this._render(this.$.svg, this.type, this.data);
     },
 
