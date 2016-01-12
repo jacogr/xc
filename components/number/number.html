@@ -3,13 +3,13 @@
 (function () {
   window.xc = window.xc || {};
 
-  var format = window.xc.formatNumber = function (number, fmt, drop) {
+  var format = function format(number, fmt, drop) {
     if (!_.isNumber(number)) {
       return '';
     }
 
     if (fmt === '-text') {
-      return window.xc.formatNumberText(number);
+      return window.xc.NumberText.format(number);
     }
 
     var decimals = _.isNumber(fmt) ? fmt : _.parseInt(fmt);
@@ -42,7 +42,9 @@
 
     _setNumberStr: function _setNumberStr() {
       this.numberstr = format(this.number, this.format);
-    }
+    },
+
+    format: format
   };
 
   Polymer({

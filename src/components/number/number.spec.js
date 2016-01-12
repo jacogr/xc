@@ -3,10 +3,10 @@ describe('number', () => {
     let formatter;
 
     beforeEach(() => {
-      formatter = window.xc.formatNumber;
+      formatter = window.xc.Number.format;
     });
 
-    it('attaches to window.xc.formatNumber', () => {
+    it('attaches to window.xc.Number.format', () => {
       expect(formatter).to.be.a.function;
     });
 

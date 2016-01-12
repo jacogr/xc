@@ -1,13 +1,13 @@
 (function() {
   window.xc = window.xc || {};
 
-  const format = window.xc.formatNumber = function(number, fmt, drop) {
+  const format = function(number, fmt, drop) {
     if (!_.isNumber(number)) {
       return '';
     }
 
     if (fmt === '-text') {
-      return window.xc.formatNumberText(number);
+      return window.xc.NumberText.format(number);
     }
 
     const decimals = _.isNumber(fmt) ? fmt : _.parseInt(fmt);
@@ -40,7 +40,9 @@
 
     _setNumberStr: function() {
       this.numberstr = format(this.number, this.format);
-    }
+    },
+
+    format: format
   };
 
   Polymer({

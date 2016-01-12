@@ -5,10 +5,10 @@ describe('number', function () {
     var formatter = undefined;
 
     beforeEach(function () {
-      formatter = window.xc.formatNumber;
+      formatter = window.xc.Number.format;
     });
 
-    it('attaches to window.xc.formatNumber', function () {
+    it('attaches to window.xc.Number.format', function () {
       expect(formatter).to.be.a.function;
     });
 

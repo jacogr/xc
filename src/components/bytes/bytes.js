@@ -21,7 +21,7 @@
     }
 
     return {
-      value: window.xc.formatNumber(number, DECIMALS, true),
+      value: window.xc.Number.format(number, DECIMALS, true),
       unit: UNITS[unit]
     };
   };

@@ -5,10 +5,10 @@ describe('number-text', function () {
     var formatter = undefined;
 
     beforeEach(function () {
-      formatter = window.xc.formatNumberText;
+      formatter = window.xc.NumberText.format;
     });
 
-    it('attaches to window.xc.formatNumberText', function () {
+    it('attaches to window.xc.NumberText.format', function () {
       expect(formatter).to.be.a.function;
     });
 

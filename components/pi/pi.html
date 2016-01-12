@@ -127,7 +127,7 @@
     }
   };
 
-  var calculate = window.xc.calculatePi = function (digits, padded, cb) {
+  var calculate = function calculate(digits, padded, cb) {
     var k = 0;
     var sum = new Decimal(digits + 10);
 
@@ -208,7 +208,9 @@
         _this.pistr = str;
         _this.busy = false;
       });
-    }
+    },
+
+    calculate: calculate
   };
 
   Polymer({

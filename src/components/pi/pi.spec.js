@@ -23,14 +23,14 @@ describe('pi', () => {
 
   describe('calculation', () => {
     it('calculates with padding', (done) => {
-      window.xc.calculatePi(50, true, (pi) => {
+      window.xc.Pi.calculate(50, true, (pi) => {
         expect(pi).to.equal(PI_PAD_50);
         done();
       });
     });
 
     it('calculates without padding', (done) => {
-      window.xc.calculatePi(100, false, (pi) => {
+      window.xc.Pi.calculate(100, false, (pi) => {
         expect(pi).to.equal(PI.slice(0, 102));
         done();
       });

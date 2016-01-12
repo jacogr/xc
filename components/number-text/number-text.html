@@ -16,10 +16,10 @@
     }
 
     var fixed = '' + num.toFixed(2) * 1;
-    return ' point ' + window.xc.formatNumberText(fixed.split('.')[1], true);
+    return ' point ' + window.xc.NumberText.format(fixed.split('.')[1], true);
   };
 
-  var format = window.xc.formatNumberText = function (_number, single) {
+  var format = function format(_number, single) {
     var number = undefined;
 
     if (_.isString(_number)) {
@@ -107,7 +107,9 @@
 
     _setNumberTextStr: function _setNumberTextStr() {
       this.numbertextstr = format(this.number, this.single);
-    }
+    },
+
+    format: format
   };
 
   Polymer({

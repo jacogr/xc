@@ -92,7 +92,7 @@
 
   const formatTextDate = function(date) {
     const f = function(fmt) {
-      return window.xc.formatNumberText(format(date, fmt));
+      return window.xc.NumberText.format(format(date, fmt));
     };
 
     return `${f('%d')} ${format(date, '%B')} ${f('%c')} ${f('%y')}`;
@@ -100,7 +100,7 @@
 
   const formatTextTime = function(date) {
     const f = function(fmt) {
-      return window.xc.formatNumberText(format(date, fmt));
+      return window.xc.NumberText.format(format(date, fmt));
     };
 
     let min = format(date, '%M');
@@ -108,7 +108,7 @@
     if (min === '00') {
       min = `o'clock`;
     } else {
-      min = `${min.indexOf('0') === 0 ? "o'" : ''}${window.xc.formatNumberText(min)}`;
+      min = `${min.indexOf('0') === 0 ? "o'" : ''}${window.xc.NumberText.format(min)}`;
     }
 
     return `${f('%l')} ${min} ${format(date, '%p')}`;

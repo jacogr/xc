@@ -116,7 +116,7 @@
 
   var formatTextDate = function formatTextDate(date) {
     var f = function f(fmt) {
-      return window.xc.formatNumberText(format(date, fmt));
+      return window.xc.NumberText.format(format(date, fmt));
     };
 
     return f('%d') + ' ' + format(date, '%B') + ' ' + f('%c') + ' ' + f('%y');
@@ -124,7 +124,7 @@
 
   var formatTextTime = function formatTextTime(date) {
     var f = function f(fmt) {
-      return window.xc.formatNumberText(format(date, fmt));
+      return window.xc.NumberText.format(format(date, fmt));
     };
 
     var min = format(date, '%M');
@@ -132,7 +132,7 @@
     if (min === '00') {
       min = 'o\'clock';
     } else {
-      min = '' + (min.indexOf('0') === 0 ? "o'" : '') + window.xc.formatNumberText(min);
+      min = '' + (min.indexOf('0') === 0 ? "o'" : '') + window.xc.NumberText.format(min);
     }
 
     return f('%l') + ' ' + min + ' ' + format(date, '%p');

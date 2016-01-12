@@ -17,10 +17,10 @@
     }
 
     const fixed = `${num.toFixed(2) * 1}`;
-    return ` point ${window.xc.formatNumberText(fixed.split('.')[1], true)}`;
+    return ` point ${window.xc.NumberText.format(fixed.split('.')[1], true)}`;
   };
 
-  const format = window.xc.formatNumberText = function(_number, single) {
+  const format = function(_number, single) {
     let number;
 
     if (_.isString(_number)) {
@@ -108,7 +108,9 @@
 
     _setNumberTextStr: function() {
       this.numbertextstr = format(this.number, this.single);
-    }
+    },
+
+    format: format
   };
 
   Polymer({
