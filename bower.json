@@ -16,13 +16,15 @@
     "es6"
   ],
   "devDependencies": {
+    "test-fixture": "polymerelements/test-fixture#^1.1.0"
+  },
+  "dependencies": {
     "polymer": "~1.2.3",
-    "test-fixture": "polymerelements/test-fixture#^1.1.0",
-    "webcomponentsjs": "~0.7.20",
     "lodash": "~3.10.1",
     "showdown": "~1.3.0",
     "d3": "~3.5.12",
     "nvd3": "~1.8.1",
-    "moment": "~2.11.1"
+    "moment": "~2.11.1",
+    "webcomponentsjs": "~0.7.20"
   }
 }
