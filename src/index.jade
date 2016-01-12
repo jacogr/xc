@@ -7,7 +7,7 @@ html(lang="en")
     meta(name="author" content="")
     meta(name="viewport" content="width=device-width")
     
-    title Component Tests
+    title xc-* components
     
     link(rel="import" href="components/loader/loader.html")
     
@@ -16,14 +16,28 @@ html(lang="en")
     
     dom-module#xc-index
       template
-        xc-pi(digits="1000" padded)
-        xc-graph-bar(data="{{ graph.dataset }}" style="height:300px")
-        xc-graph-donut(data="{{ graph.datalist }}" style="height:300px")
-        xc-graph-line(data="{{ graph.dataset }}" style="height:300px")
-        xc-graph-pie(data="{{ graph.datalist }}" style="height:300px")
-      
-      script !{readCompiled('test.js')}
+        style !{readCompiled('index.css')}
+        
+        .sample
+          pre xc-pi digits="1000" padded
+          xc-pi(digits="1000" padded)
+        
+        .sample
+          pre xc-graph-bar data="..."
+          xc-graph-bar(data="{{ graph.dataset }}" style="height:300px")
+        
+        .sample
+          pre xc-graph-donut data="..."
+          xc-graph-donut(data="{{ graph.datalist }}" style="height:300px")
+        
+        .sample
+          pre xc-graph-line data="..."
+          xc-graph-line(data="{{ graph.dataset }}" style="height:300px")
+        
+        .sample
+          pre xc-graph-pie data="..."
+          xc-graph-pie(data="{{ graph.datalist }}" style="height:300px")
       
     xc-index
-      
+    
     script !{readCompiled('index.js')}
