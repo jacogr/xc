@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test:local"
+    "test": "gulp test:local",
+    "run": "node_modules/.bin/polyserve -o"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "lodash": "^3.10.1",
     "mocha": "^2.3.4",
     "morgan": "^1.6.1",
+    "polyserve": "^0.5.0",
     "serve-static": "^1.10.0",
     "through-gulp": "^0.3.8",
     "through2": "^2.0.0",
