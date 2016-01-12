@@ -1,5 +1,7 @@
 (function() {
-  const importComponent = function(base, _href, minified, cb) {
+  window.xc = window.xc || {};
+
+  const loadComponent = function(base, _href, minified, cb) {
     let href = `${base}${_href}`;
     const parts = href.split('/');
 
@@ -31,14 +33,9 @@
     document.head.appendChild(element);
   };
 
-  const LoaderPrototype = Object.create(window.HTMLElement.prototype);
-
-  LoaderPrototype.createdCallback = function() {
+  const loadComponents = function(_base, components, minified, bootstrap) {
     const loaded = {};
-    const components = this.getAttribute('components').split(',');
-    const minified = this.getAttribute('minified') || false;
-    const bootstrap = this.getAttribute('bootstrap');
-    let base = this.getAttribute('base') || '';
+    let base = _base || '';
 
     const loadcb = function(name, ok) {
       loaded[name] = ok;
@@ -52,14 +49,40 @@
       base = `${base}/`;
     }
 
-    components.forEach((_href) => {
-      const href = _href.trim();
-
-      importComponent(base, href, minified, loadcb);
+    _.each(components, (href) => {
+      loadComponent(base, href, minified, loadcb);
     });
   };
 
-  document.registerElement('xc-loader', {
-    prototype: LoaderPrototype
+  window.xc.Loader = {
+    properties: {
+      base: {
+        type: String
+      },
+      bootstrap: {
+        type: String
+      },
+      components: {
+        type: Array,
+        value: []
+      },
+      minified: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    ready: function() {
+      loadComponents(this.base, this.components, this.minified, this.boostrap);
+    },
+
+    load: loadComponents
+  };
+
+  Polymer({
+    is: 'xc-loader',
+    behaviors: [
+      window.xc.Loader
+    ]
   });
 })();

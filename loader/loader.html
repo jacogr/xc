@@ -1,7 +1,9 @@
-<link rel="import" href="../3rdparty/polymer.html"/><dom-module id="xc-loader"><script>'use strict';
+<link rel="import" href="../3rdparty/lodash.html"/><link rel="import" href="../3rdparty/polymer.html"/><dom-module id="xc-loader"><script>'use strict';
 
 (function () {
-  var importComponent = function importComponent(base, _href, minified, cb) {
+  window.xc = window.xc || {};
+
+  var loadComponent = function loadComponent(base, _href, minified, cb) {
     var href = '' + base + _href;
     var parts = href.split('/');
 
@@ -33,14 +35,9 @@
     document.head.appendChild(element);
   };
 
-  var LoaderPrototype = Object.create(window.HTMLElement.prototype);
-
-  LoaderPrototype.createdCallback = function () {
+  var loadComponents = function loadComponents(_base, components, minified, bootstrap) {
     var loaded = {};
-    var components = this.getAttribute('components').split(',');
-    var minified = this.getAttribute('minified') || false;
-    var bootstrap = this.getAttribute('bootstrap');
-    var base = this.getAttribute('base') || '';
+    var base = _base || '';
 
     var loadcb = function loadcb(name, ok) {
       loaded[name] = ok;
@@ -54,14 +51,38 @@
       base = base + '/';
     }
 
-    components.forEach(function (_href) {
-      var href = _href.trim();
-
-      importComponent(base, href, minified, loadcb);
+    _.each(components, function (href) {
+      loadComponent(base, href, minified, loadcb);
     });
   };
 
-  document.registerElement('xc-loader', {
-    prototype: LoaderPrototype
+  window.xc.Loader = {
+    properties: {
+      base: {
+        type: String
+      },
+      bootstrap: {
+        type: String
+      },
+      components: {
+        type: Array,
+        value: []
+      },
+      minified: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    ready: function ready() {
+      loadComponents(this.base, this.components, this.minified, this.boostrap);
+    },
+
+    load: loadComponents
+  };
+
+  Polymer({
+    is: 'xc-loader',
+    behaviors: [window.xc.Loader]
   });
 })();</script></dom-module>
