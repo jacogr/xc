@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test:local",
-    "run": "node_modules/.bin/polyserve -o"
+    "serve": "node_modules/.bin/polyserve -o"
   },
   "author": "",
   "license": "ISC",
