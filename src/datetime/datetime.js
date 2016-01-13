@@ -8,16 +8,15 @@
 
   const format = function(datetime, _fmt) {
     const date = moment(datetime);
-    const century = Math.floor(date.year() / 100);
 
     const ntf = function(fmt) {
       return window.xc.NumberText.format(date.format(fmt));
     };
 
     const formatTextDate = function() {
-      const centurytext = window.xc.NumberText.format(century);
+      const century = window.xc.NumberText.format(Math.floor(date.year() / 100));
 
-      return `${ntf('D')} ${date.format('MMMM')} ${centurytext} ${ntf('YY')}`;
+      return `${ntf('D')} ${date.format('MMMM')} ${century} ${ntf('YY')}`;
     };
 
     const formatTextTime = function() {

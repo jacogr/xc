@@ -10,16 +10,15 @@
 
   var format = function format(datetime, _fmt) {
     var date = moment(datetime);
-    var century = Math.floor(date.year() / 100);
 
     var ntf = function ntf(fmt) {
       return window.xc.NumberText.format(date.format(fmt));
     };
 
     var formatTextDate = function formatTextDate() {
-      var centurytext = window.xc.NumberText.format(century);
+      var century = window.xc.NumberText.format(Math.floor(date.year() / 100));
 
-      return ntf('D') + ' ' + date.format('MMMM') + ' ' + centurytext + ' ' + ntf('YY');
+      return ntf('D') + ' ' + date.format('MMMM') + ' ' + century + ' ' + ntf('YY');
     };
 
     var formatTextTime = function formatTextTime() {
