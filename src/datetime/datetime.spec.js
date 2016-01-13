@@ -65,6 +65,14 @@ describe('datetime', () => {
         testFormat(TS, '(textTime)', 'six fifty-nine am');
       });
 
+      it('formats using (textTime) on the hour', () => {
+        testFormat('2016-01-13 07:00', '(textTime)', "seven o'clock am");
+      });
+
+      it('formats using (textTime) on the hour + <10 minutes', () => {
+        testFormat('2016-01-13 07:07', '(textTime)', "seven o'seven am");
+      });
+
       it('formats using (text)', () => {
         testFormat(TS, '(text)', 'thirteen January twenty sixteen six fifty-nine am');
       });
