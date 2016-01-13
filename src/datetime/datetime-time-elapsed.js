@@ -5,7 +5,7 @@
     properties: {
       format: {
         type: String,
-        value: '-elapsed'
+        value: '(elapsed)'
       }
     }
   };

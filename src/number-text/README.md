@@ -14,6 +14,6 @@ eg.
 
 Examples:
 
-  123 - one-hundred and twenty-three
-  123 (single=true) - one two three
-  1234 - one two three four
+- 123 - one-hundred and twenty-three
+- 123 (single=true) - one two three
+- 1234 - one two three four

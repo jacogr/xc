@@ -5,7 +5,7 @@
     properties: {
       format: {
         type: String,
-        value: '-remaining'
+        value: '(remaining)'
       }
     }
   };

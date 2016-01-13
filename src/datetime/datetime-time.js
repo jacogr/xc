@@ -8,27 +8,27 @@
       },
       format: {
         type: String,
-        value: '-medium',
+        value: '(medium)',
         observer: '_formatChanged'
       },
       dtformat: {
         type: String,
-        value: '-mediumTime'
+        value: '(mediumTime)'
       }
     },
 
     _formatChanged: function() {
       let format;
 
-      if (_.includes(this.format, '-long')) {
-        format = '-long';
-      } else if (_.includes(this.format, '-text')) {
-        format = '-text';
+      if (_.includes(this.format, '(long)')) {
+        format = 'long';
+      } else if (_.includes(this.format, '(text)')) {
+        format = 'text';
       } else {
-        format = '-medium';
+        format = 'medium';
       }
 
-      this.dtformat = `${format}Time`;
+      this.dtformat = `(${format}Time)`;
     }
   };
 
