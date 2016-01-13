@@ -7,9 +7,11 @@
 (function () {
   window.xc = window.xc || {};
 
-  var converter = new showdown.Converter({
-    noHeaderId: true
-  });
+  var converter = new showdown.Converter({ noHeaderId: true });
+
+  var format = function format(markdown) {
+    return converter.makeHtml(markdown);
+  };
 
   window.xc.Markdown = {
     properties: {
@@ -20,12 +22,10 @@
     },
 
     _markdownChanged: function _markdownChanged() {
-      this.innerHTML = this._render(this.markdown);
+      this.innerHTML = format(this.markdown);
     },
 
-    _render: function _render(markdown) {
-      return converter.makeHtml(markdown);
-    }
+    format: format
   };
 
   Polymer({

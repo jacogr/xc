@@ -1,36 +1,57 @@
 <!DOCTYPE html><html></html><head><meta charset="utf-8"><script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script><script src="../../bower_components/web-component-tester/browser.js"></script><link rel="import" href="markdown.html"></head><body><test-fixture id="fixture"><template><xc-markdown id="element"></xc-markdown></template></test-fixture><script>'use strict';
 
 describe('markdown', function () {
-  var element = undefined;
-  var fixture = undefined;
+  describe('formatter', function () {
+    var formatter = undefined;
 
-  beforeEach(function () {
-    fixture = document.getElementById('fixture');
-    fixture.create();
-
-    element = document.getElementById('element');
-  });
-
-  afterEach(function () {
-    fixture.restore();
-  });
-
-  it('attaches the element', function () {
-    expect(element).to.be.ok;
-  });
-
-  describe('rendering', function () {
-    it('renders markdown', function () {
-      element.setAttribute('markdown', '## a heading');
-      expect(element.innerHTML).to.equal('<h2>a heading</h2>');
+    beforeEach(function () {
+      formatter = window.xc.Markdown.format;
     });
 
-    it('acts on markdown changes', function () {
-      element.setAttribute('markdown', '## a heading');
-      expect(element.innerHTML).to.equal('<h2>a heading</h2>');
+    it('exists', function () {
+      expect(formatter).to.be.a.function;
+    });
 
-      element.setAttribute('markdown', '### another heading');
-      expect(element.innerHTML).to.equal('<h3>another heading</h3>');
+    it('formats markdown to HTML', function () {
+      expect(formatter('# a h1 heading')).to.equal('<h1>a h1 heading</h1>');
+    });
+  });
+
+  describe('element', function () {
+    var element = undefined;
+    var fixture = undefined;
+
+    var testRender = function testRender(markdown, expected) {
+      element.setAttribute('markdown', markdown);
+      expect(element.innerHTML).to.equal(expected);
+    };
+
+    beforeEach(function () {
+      fixture = document.getElementById('fixture');
+      fixture.create();
+
+      element = document.getElementById('element');
+    });
+
+    afterEach(function () {
+      fixture.restore();
+    });
+
+    it('attaches the element', function () {
+      expect(element).to.be.ok;
+    });
+
+    describe('formatting', function () {
+      it('renders markdown', function () {
+        testRender('# a heading', '<h1>a heading</h1>');
+      });
+    });
+
+    describe('listeners', function () {
+      it('acts on markdown changes', function () {
+        testRender('## another heading', '<h2>another heading</h2>');
+        testRender('### yet another heading', '<h3>yet another heading</h3>');
+      });
     });
   });
 });</script></body>
