@@ -80,6 +80,8 @@ describe('datetime', () => {
   });
 
   describe('element', () => {
+    const TS = '2016-01-08 06:55:23';
+
     let element;
     let fixture;
 
@@ -105,14 +107,22 @@ describe('datetime', () => {
       expect(element).to.be.ok;
     });
 
+    it('renders initial values using (medium)', () => {
+      testRender(TS, undefined, '8 Jan 2016 06:55');
+    });
+
+    it('renders using datetime & format values', () => {
+      testRender(TS, '(mediumDate)', '8 Jan 2016');
+    });
+
     describe('listeners', () => {
       it('acts on datetime changes', () => {
-        testRender('2016-01-08T06:55:23+02:00', undefined, '8 Jan 2016 06:55');
-        testRender('2016-01-08T07:13:42+02:00', undefined, '8 Jan 2016 07:13');
+        testRender(TS, undefined, '8 Jan 2016 06:55');
+        testRender('2016-01-13T07:13:42+02:00', undefined, '13 Jan 2016 07:13');
       });
 
       it('acts on format changes', () => {
-        testRender('2016-01-08T06:55:23+02:00', '(mediumDate)', '8 Jan 2016');
+        testRender(TS, '(mediumDate)', '8 Jan 2016');
         testRender(undefined, '(mediumTime)', '06:55');
       });
     });
