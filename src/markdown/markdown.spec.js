@@ -17,6 +17,7 @@ describe('markdown', () => {
 
   describe('element', () => {
     let element;
+    let scriptelem;
     let fixture;
 
     const testRender = function(markdown, expected) {
@@ -29,6 +30,7 @@ describe('markdown', () => {
       fixture.create();
 
       element = document.getElementById('element');
+      scriptelem = document.getElementById('scriptelement');
     });
 
     afterEach(() => {
@@ -40,8 +42,12 @@ describe('markdown', () => {
     });
 
     describe('formatting', () => {
-      it('renders markdown', () => {
+      it('renders markdown via attribute', () => {
         testRender('# a heading', '<h1>a heading</h1>');
+      });
+
+      it('renders markdown via text/markdown script', () => {
+        expect(scriptelem.innerHTML).to.equal('<p>Some <strong>embedded</strong> markdown</p>');
       });
     });
 

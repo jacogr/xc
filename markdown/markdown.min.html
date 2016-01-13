@@ -2,4 +2,4 @@
 ::content li{margin:.5em 0}
 ::content p{margin:1em 0}
 ::content h1,::content h2{font-size:1em;margin:2em 0 .5em}
-::content h1:first-child,::content h2:first-child{margin-top:1em}</style></template><script>"use strict";!function(){window.xc=window.xc||{};var n=new showdown.Converter({noHeaderId:!0}),o=function(o){return n.makeHtml(o)};window.xc.Markdown={properties:{markdown:{type:String,observer:"_markdownChanged"}},_markdownChanged:function(){this.innerHTML=o(this.markdown)},format:o},Polymer({is:"xc-markdown",behaviors:[window.xc.Markdown]})}();</script></dom-module>
+::content h1:first-child,::content h2:first-child{margin-top:1em}</style></template><script>"use strict";!function(){window.xc=window.xc||{};var n=new showdown.Converter({noHeaderId:!0}),r=function(r){return n.makeHtml(r)};window.xc.Markdown={properties:{markdown:{type:String,observer:"_markdownChanged"}},_markdownChanged:function(){this.innerHTML=r(this.markdown)},ready:function(){if(!this.markdown){var n=Polymer.dom(this).querySelector('[type^="text/markdown"]');n&&(this.innerHTML=r(n.textContent))}},format:r},Polymer({is:"xc-markdown",behaviors:[window.xc.Markdown]})}();</script></dom-module>

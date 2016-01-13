@@ -1,4 +1,4 @@
-<!DOCTYPE html><html></html><head><meta charset="utf-8"><script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script><script src="../../bower_components/web-component-tester/browser.js"></script><link rel="import" href="markdown.html"></head><body><test-fixture id="fixture"><template><xc-markdown id="element"></xc-markdown></template></test-fixture><script>'use strict';
+<!DOCTYPE html><html></html><head><meta charset="utf-8"><script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script><script src="../../bower_components/web-component-tester/browser.js"></script><link rel="import" href="markdown.html"></head><body><test-fixture id="fixture"><template><xc-markdown id="element"></xc-markdown><xc-markdown id="scriptelement"><script type="text/markdown">Some **embedded** markdown</script></xc-markdown></template></test-fixture><script>'use strict';
 
 describe('markdown', function () {
   describe('formatter', function () {
@@ -19,6 +19,7 @@ describe('markdown', function () {
 
   describe('element', function () {
     var element = undefined;
+    var scriptelem = undefined;
     var fixture = undefined;
 
     var testRender = function testRender(markdown, expected) {
@@ -31,6 +32,7 @@ describe('markdown', function () {
       fixture.create();
 
       element = document.getElementById('element');
+      scriptelem = document.getElementById('scriptelement');
     });
 
     afterEach(function () {
@@ -42,8 +44,12 @@ describe('markdown', function () {
     });
 
     describe('formatting', function () {
-      it('renders markdown', function () {
+      it('renders markdown via attribute', function () {
         testRender('# a heading', '<h1>a heading</h1>');
+      });
+
+      it('renders markdown via text/markdown script', function () {
+        expect(scriptelem.innerHTML).to.equal('<p>Some <strong>embedded</strong> markdown</p>');
       });
     });
 

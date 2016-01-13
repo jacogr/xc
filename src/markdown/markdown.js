@@ -19,6 +19,17 @@
       this.innerHTML = format(this.markdown);
     },
 
+    ready: function() {
+      // stolen from https://github.com/PolymerElements/marked-element/blob/master/marked-element.html
+      if (!this.markdown) {
+        const mdscript = Polymer.dom(this).querySelector('[type^="text/markdown"]');
+
+        if (mdscript) {
+          this.innerHTML = format(mdscript.textContent);
+        }
+      }
+    },
+
     format: format
   };
 

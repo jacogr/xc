@@ -12,5 +12,7 @@ body
   test-fixture#fixture
     template
       xc-markdown#element
+      xc-markdown#scriptelement
+        script(type="text/markdown") Some **embedded** markdown
   
   script !{readCompiled('markdown.spec.js')}

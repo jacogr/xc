@@ -12,7 +12,7 @@ html(lang="en")
     link(rel="import" href="loader/loader.html")
     
   body
-    xc-loader(components='["bytes/", "graph/", "pi/"]')
+    xc-loader(components='["bytes/", "graph/", "markdown/", "pi/"]')
     
     dom-module#xc-index
       template
@@ -21,6 +21,11 @@ html(lang="en")
         .sample
           pre xc-bytes bytes="456789"
           xc-bytes(bytes="456789")
+            
+        .sample
+          pre xc-markdown
+          xc-markdown
+            script(type="text/markdown") ## a heading 
         
         .sample
           pre xc-pi digits="1000" padded
